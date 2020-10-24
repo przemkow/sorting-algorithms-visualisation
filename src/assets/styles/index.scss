@@ -1,0 +1,22 @@
+
+#app {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  .col {
+    background-color: lightblue;
+    width: 40px;
+    margin: 0 2px;
+    text-align: center;
+    height: 0;
+    will-change: height;
+    //transition: height 200ms;
+  }
+}
