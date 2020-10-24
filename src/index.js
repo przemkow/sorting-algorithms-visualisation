@@ -65,6 +65,26 @@ const proxy3 = new Proxy(array3, {
   }
 });
 
+const array4 = [...array];
+
+const temp4 = [{
+  changedIndex: null,
+  newValue: null,
+}]
+
+const proxy4 = new Proxy(array4, {
+  set: function(target, prop, value) {
+    target[prop] = value;
+    temp4.push(
+      {
+        list:[...target],
+        changedIndex: prop,
+        newValue: value
+      });
+    return true;
+
+  }
+});
 
 const changesVisualiser = createRenderer(array, 'MergeSort')
 MergeSort.sort(proxy)
@@ -72,6 +92,10 @@ const changesVisualiser2 = createRenderer(array2, 'HeapSort')
 HeapSort.sort(proxy2)
 const changesVisualiser3 = createRenderer(array3, 'bubbleSort')
 bubbleSort(proxy3)
+const changesVisualiser4 = createRenderer(array4, 'Array.prototype.sort')
+proxy4.sort(function compareNumbers(a, b) {
+  return a - b
+});
 
 
 function visualiseAlgorithm(temp) {
@@ -90,6 +114,12 @@ function visualiseAlgorithm(temp) {
   temp3.forEach((values, index) => {
     setTimeout(() => {
       changesVisualiser3(values)
+    }, 20 * index)
+  })
+
+  temp4.forEach((values, index) => {
+    setTimeout(() => {
+      changesVisualiser4(values)
     }, 20 * index)
   })
 }
