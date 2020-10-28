@@ -1,7 +1,7 @@
 class HeapSort {
   static sort(A) {
     let lastElementIdx = A.length - 1;
-    while ((lastElementIdx >= 0)) {
+    while (lastElementIdx >= 0) {
       {
         HeapSort.createMaxHeap(A, lastElementIdx);
         let temp = A[0];
@@ -12,7 +12,7 @@ class HeapSort {
     }
   }
   static createMaxHeap(A, lastIdx) {
-    let lastParrentId = (lastIdx / 2 | 0);
+    let lastParrentId = (lastIdx / 2) | 0;
     for (let i = lastParrentId; i >= 0; i--) {
       {
         HeapSort.setMaxHeap(A, i, lastIdx);
@@ -25,7 +25,8 @@ class HeapSort {
     if (leftIdx > lastIdx) {
       return;
     }
-    let compareToIdx = rightIdx > lastIdx || A[leftIdx] > A[rightIdx] ? leftIdx : rightIdx;
+    let compareToIdx =
+      rightIdx > lastIdx || A[leftIdx] > A[rightIdx] ? leftIdx : rightIdx;
     if (A[parentIdx] < A[compareToIdx]) {
       let temp = A[compareToIdx];
       A[compareToIdx] = A[parentIdx];
@@ -41,7 +42,4 @@ class HeapSort {
   }
 }
 
-
-export {
-  HeapSort
-}
+export { HeapSort };

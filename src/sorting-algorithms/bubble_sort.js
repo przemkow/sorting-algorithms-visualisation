@@ -7,20 +7,18 @@
 function bubbleSort(A) {
   for (let i = 0; i < A.length - 1; i++) {
     let sorted = true;
-    for(let j = 0; j < A.length - i - 1; j++) {
-      if(A[j] > A[j + 1]) {
+    for (let j = 0; j < A.length - i - 1; j++) {
+      if (A[j] > A[j + 1]) {
         let temp = A[j];
         A[j] = A[j + 1];
         A[j + 1] = temp;
         sorted = false;
       }
     }
-    if(sorted) {
+    if (sorted) {
       break;
     }
   }
 }
 
-export {
-  bubbleSort
-}
+export { bubbleSort };
