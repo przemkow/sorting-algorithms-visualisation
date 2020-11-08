@@ -1,42 +1,53 @@
 import { SortingAlgorithmDetails } from "../shared.models";
-import { createChartRenderer } from "./renderer";
+import { ChartRenderer } from "./renderer/ChartRenderer";
 import { proxySpy } from "../sorting-spies/Proxy/proxy-spy";
 
 function visualiser(
   inputArray: readonly number[],
   algorithms: SortingAlgorithmDetails[]
 ): void {
+  /*
+   * Generate an array os spy-records for every compared algorithm
+   */
   const spyRecords = algorithms.map((algorithmDetails) =>
     proxySpy([...inputArray], algorithmDetails)
   );
 
-  const chartRenderers = spyRecords.map((spyRecord) => ({
-    chartRenderer: createChartRenderer(
-      spyRecord.initialState,
-      spyRecord.algorithmName
-    ),
-    iterator: spyRecord.steps[Symbol.iterator](),
-  }));
+  /*
+   * Create list of chartRenderer objects
+   */
+  const chartRenderers = spyRecords.map(
+    (spyRecord) =>
+      new ChartRenderer(
+        spyRecord.initialState,
+        spyRecord.algorithmName,
+        spyRecord.steps
+      )
+  );
 
-  function render() {
+  /**
+   * visualiseChanges - function which iterates over all chartRenderers and updates rendered chart in period defined as
+   * an argument.
+   * @param updateInterval
+   */
+  function visualiseChanges(updateInterval: number) {
     let allDone = true;
     for (const chartRenderer of chartRenderers) {
-      const temp = chartRenderer.iterator.next();
-      if (temp.done === false) {
+      const temp = chartRenderer.visualiseNextStep();
+      if (!temp.done) {
         allDone = false;
-        chartRenderer.chartRenderer(temp.value);
       }
     }
     if (allDone) {
       return;
     } else {
       setTimeout(() => {
-        render();
-      }, 20);
+        visualiseChanges(updateInterval);
+      }, updateInterval);
     }
   }
 
-  render();
+  visualiseChanges(20);
 }
 
 export { visualiser };

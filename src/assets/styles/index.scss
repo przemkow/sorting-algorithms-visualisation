@@ -27,10 +27,11 @@ menu {
   .col {
     background-color: lightblue;
     width: 40px;
-    margin: 0 2px;
+    border: 2px solid white;
     text-align: center;
     height: 0;
-    will-change: height;
-    //transition: height 200ms;
+    will-change: transition;
+    transition: transform 200ms;
+    transform: translateX(0);
   }
 }

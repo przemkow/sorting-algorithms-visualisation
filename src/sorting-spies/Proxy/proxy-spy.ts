@@ -1,4 +1,8 @@
-import { SortingAlgorithmDetails, SortingSpyRecord } from "../../shared.models";
+import {
+  SortingAlgorithmDetails,
+  SortingSpyRecord,
+  SortingStepName,
+} from "../../shared.models";
 
 /**
  * Proxy Spy is able to detect only array mutations.
@@ -30,8 +34,9 @@ function proxySpy(
       const changedIndex = typeof prop === "string" ? parseInt(prop, 10) : prop;
       target[prop] = value;
       spyRecord.steps.push({
-        changedIndex,
-        newValue: value,
+        name: SortingStepName.SET_VALUE,
+        index: changedIndex,
+        value: value,
       });
 
       return true;
