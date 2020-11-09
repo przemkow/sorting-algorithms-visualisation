@@ -1,6 +1,7 @@
 import { SortingAlgorithmDetails } from "../shared.models";
 import { ChartRenderer } from "./renderer/ChartRenderer";
-import { proxySpy } from "../sorting-spies/Proxy/proxy-spy";
+// import { proxySpy } from "../sorting-spies/Proxy/proxy-spy";
+import { manualSpy } from "../sorting-spies/Manual/manual-spy";
 
 function visualiser(
   inputArray: readonly number[],
@@ -10,7 +11,7 @@ function visualiser(
    * Generate an array os spy-records for every compared algorithm
    */
   const spyRecords = algorithms.map((algorithmDetails) =>
-    proxySpy([...inputArray], algorithmDetails)
+    manualSpy([...inputArray], algorithmDetails)
   );
 
   /*
@@ -47,7 +48,7 @@ function visualiser(
     }
   }
 
-  visualiseChanges(20);
+  visualiseChanges(100);
 }
 
 export { visualiser };

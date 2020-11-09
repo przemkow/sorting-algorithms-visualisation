@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   SortingAlgorithmDetails,
   SortingSpyRecord,
   SortingStepName,
 } from "../../shared.models";
+import { SpyOptions } from "../spy.models";
 
 /**
  * Proxy Spy is able to detect only array mutations.
@@ -43,7 +45,13 @@ function proxySpy(
     },
   });
 
-  sortingAlgDetails.sortingFn(arrayProxy);
+  const fakeSpyOptions: SpyOptions = {
+    setValue() {},
+    swapValues() {},
+    setPointer() {},
+  };
+
+  sortingAlgDetails.sortingFn(arrayProxy, fakeSpyOptions);
   return spyRecord;
 }
 

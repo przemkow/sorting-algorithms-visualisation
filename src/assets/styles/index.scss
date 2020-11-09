@@ -17,21 +17,64 @@ menu {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  height: 100%;
 }
 
 .wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   height: 100%;
+  margin-bottom: 20px;
+  position: relative;
+
+  .title {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   .col {
-    background-color: lightblue;
-    width: 40px;
-    border: 2px solid white;
+    background: linear-gradient(90deg, transparent 8%, lightblue 8%, lightblue 92%, transparent 92%);
+    width: 100%;
     text-align: center;
     height: 0;
     will-change: transition;
-    transition: transform 200ms;
+    transition: transform 80ms;
     transform: translateX(0);
+  }
+
+  .pointer {
+    height: 20px;
+    position: absolute;
+    left: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: calc(50% - 3px);
+      right: 0;
+      width: 0;
+      height: 0;
+    }
+    will-change: transition;
+    transition: transform 80ms;
+    transform: translateX(0);
+
+    &.pointerA {
+      &:before {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 10px solid green;
+      }
+    }
+
+    &.pointerB {
+      &:before {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 10px solid red;
+      }
+    }
   }
 }
