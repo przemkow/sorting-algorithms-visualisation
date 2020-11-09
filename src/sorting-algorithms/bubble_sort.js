@@ -4,7 +4,7 @@
  * Size: O(1)
  * Time: O(n^2)
  */
-function bubbleSort(A) {
+function bubbleSort(A, spyOptions) {
   for (let i = 0; i < A.length - 1; i++) {
     let sorted = true;
     for (let j = 0; j < A.length - i - 1; j++) {
@@ -12,7 +12,12 @@ function bubbleSort(A) {
         let temp = A[j];
         A[j] = A[j + 1];
         A[j + 1] = temp;
+        if (spyOptions) {
+          spyOptions.swapValues(j, j + 1, j + 1);
+        }
         sorted = false;
+      } else {
+        spyOptions.setPointer(j + 1);
       }
     }
     if (sorted) {
