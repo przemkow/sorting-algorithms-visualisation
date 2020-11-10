@@ -3,10 +3,16 @@ import { ChartRenderer } from "./renderer/ChartRenderer";
 // import { proxySpy } from "../sorting-spies/Proxy/proxy-spy";
 import { manualSpy } from "../sorting-spies/Manual/manual-spy";
 
-function visualiser(
+function getVisualiser(
   inputArray: readonly number[],
-  algorithms: SortingAlgorithmDetails[]
-): void {
+  algorithms: SortingAlgorithmDetails[],
+  options: Record<string, any>
+) {
+  /*
+   * Reset content of visualiser div
+   */
+  document.getElementById("visualiser").innerHTML = "";
+
   /*
    * Generate an array os spy-records for every compared algorithm
    */
@@ -26,12 +32,13 @@ function visualiser(
       )
   );
 
+  let timeoutId = 0;
   /**
    * visualiseChanges - function which iterates over all chartRenderers and updates rendered chart in period defined as
    * an argument.
    * @param updateInterval
    */
-  function visualiseChanges(updateInterval: number) {
+  function visualiseChanges() {
     let allDone = true;
     for (const chartRenderer of chartRenderers) {
       const temp = chartRenderer.visualiseNextStep();
@@ -40,15 +47,23 @@ function visualiser(
       }
     }
     if (allDone) {
+      clearTimeout(timeoutId);
       return;
     } else {
-      setTimeout(() => {
-        visualiseChanges(updateInterval);
-      }, updateInterval);
+      timeoutId = setTimeout(() => {
+        visualiseChanges();
+      }, options.refreshRate);
     }
   }
 
-  visualiseChanges(100);
+  return {
+    start() {
+      visualiseChanges();
+    },
+    stop() {
+      clearTimeout(timeoutId);
+    },
+  };
 }
 
-export { visualiser };
+export { getVisualiser };

@@ -1,0 +1,20 @@
+
+.options {
+  grid-area: menu;
+  background-color: #f9f9f9;
+  padding: 8px;
+  .title {
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .input-group {
+    margin-bottom: 12px;
+    .input-option {
+      label {
+        font-size: 14px
+      }
+    }
+  }
+}

@@ -1,12 +1,65 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="src/assets/styles/index.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
     <title>Sorting algorithms</title>
   </head>
   <body>
     <div id="app">
-      <menu>settings</menu>
+      <menu class="options">
+        <p class="title">Settings</p>
+        <div class="input-group">
+          <div class="input-title">📊 Algorithms:</div>
+          <button type="button" data-btnid="add-algorithm" data-value="bubble-sort">
+            Bubble sort
+          </button>
+          <button type="button" data-btnid="add-algorithm" data-value="heap-sort">
+            Heap sort
+          </button>
+          <button type="button" data-btnid="add-algorithm" data-value="merge-sort">
+            Merge sort
+          </button>
+          <button type="button" data-btnid="add-algorithm" data-value="quick-sort">
+            Quick sort
+          </button>
+        </div>
+        <div class="input-group">
+          <div class="input-title">⏱ Update rate:</div>
+          <label for="update-rate">
+             <span id="update-rate-label"></span>
+          </label>
+          <input type="range"  min="5" max="1500" step="5" value="1000" style="width: 100%" id="update-rate">
+        </div>
+
+        <div class="input-group">
+          <div class="input-title">🔢 Input array:</div>
+          <label for="array-length">
+            Number of elements:
+          </label>
+          <input type="number" style="width: 100%" id="array-length">
+          <div>
+            <input type="radio" id="array-descent" name="array-values" value="array-descent">
+            <label for="array-descent">Sorter (descent)</label>
+          </div>
+          <div>
+            <input type="radio" id="array-ascend" name="array-values" value="array-ascend">
+            <label for="array-ascend">Sorter (ascend)</label>
+          </div>
+          <div>
+            <input type="radio" id="array-random" name="array-values" value="array-random">
+            <label for="array-random">Randomize</label>
+          </div>
+          <div>
+            <button id="array-custom" name="array-values" value="array-random">custom values</button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <button id="start">start</button>
+        </div>
+      </menu>
       <section id="visualiser">
       </section>
     </div>
