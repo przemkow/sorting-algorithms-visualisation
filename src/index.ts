@@ -1,45 +1,35 @@
-import { bubbleSort } from "./sorting-algorithms/bubble_sort";
-import { HeapSort } from "./sorting-algorithms/heap_sort";
-import { MergeSort } from "./sorting-algorithms/merge_sort";
-import { QuickSort } from "./sorting-algorithms/quick_sort";
-import { SortingAlgorithmDetails } from "./shared.models";
-import { visualiser } from "./visualiser/index";
+import { store } from "./store/app-state";
+import { attachSettingsHandlers } from "./view/settings/index";
+import { getVisualiser } from "./view/visualiser/index";
 
 function getInputArray() {
-  const array = Array.from({ length: 100 }, () =>
+  const array = Array.from({ length: 30 }, () =>
     Math.floor(Math.random() * 1000)
   );
   return Object.freeze(array);
 }
 
-function getSortingAlg(): SortingAlgorithmDetails[] {
-  return [
-    {
-      name: "Bubble Sort",
-      sortingFn: bubbleSort,
-    },
-    {
-      name: "HeapSort",
-      sortingFn: HeapSort.sort,
-    },
-    {
-      name: "MergeSort",
-      sortingFn: MergeSort.sort,
-    },
-    {
-      name: "QuickSort",
-      sortingFn: QuickSort.sort,
-    },
-  ];
-}
-
 (function main() {
   //Get array to sort
   const inputArray = getInputArray();
+  attachSettingsHandlers();
 
-  //Get list of algorithms to compare
-  const sortingAlg = getSortingAlg();
+  let visualiserCtrl;
+  let isVisualisationRunning = false;
 
-  // Visualise sorting
-  visualiser(inputArray, sortingAlg);
+  store.subscribe({
+    sortingAlgorithms(newState) {
+      visualiserCtrl = getVisualiser(inputArray, newState.sortingAlgorithms);
+      isVisualisationRunning = false;
+    },
+  });
+
+  document.getElementById("start").addEventListener("click", (e) => {
+    if (!isVisualisationRunning) {
+      visualiserCtrl.start();
+    } else {
+      visualiserCtrl.stop();
+    }
+    isVisualisationRunning = !isVisualisationRunning;
+  });
 })();

@@ -3,7 +3,7 @@ import {
   SortingStep,
   SortingStepName,
   SwapValuesStep,
-} from "../../shared.models";
+} from "../../../shared.models";
 import { getTranslateX } from "./utils";
 
 class ChartRenderer {
@@ -11,6 +11,7 @@ class ChartRenderer {
   private updatesIterator: IterableIterator<SortingStep>;
   private pointerA: HTMLElement;
   private pointerB: HTMLElement;
+  private wrapper: HTMLElement;
 
   constructor(
     private readonly initialState: number[],
@@ -25,6 +26,8 @@ class ChartRenderer {
     const nextStep = this.updatesIterator.next();
     if (!nextStep.done) {
       this.updateChart(nextStep.value);
+    } else {
+      this.wrapper.classList.add("done");
     }
     return {
       done: nextStep.done,
@@ -39,9 +42,10 @@ class ChartRenderer {
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
     const title = document.createElement("div");
-    title.classList.add("title");
+    title.classList.add("chart-title");
     title.appendChild(document.createTextNode(algName));
     wrapper.appendChild(title);
+    this.wrapper = wrapper;
 
     const pointerA = document.createElement("div");
     pointerA.classList.add("pointer");

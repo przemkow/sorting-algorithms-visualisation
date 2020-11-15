@@ -1,80 +1,27 @@
+@import "./visualiser";
+@import "./options";
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
 #app {
   display: grid;
-  grid-template-columns: 10% 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-areas:
     'menu visualiser';
   grid-gap: 8px;
-  min-height: 100%;
-}
-
-menu {
-  grid-area: menu;
-  background-color: #f9f9f9;
+  height: 100%;
 }
 
 #visualiser {
   grid-area: visualiser;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
   height: 100%;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  height: 100%;
-  margin-bottom: 20px;
-  position: relative;
-
-  .title {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .col {
-    background: linear-gradient(90deg, transparent 8%, lightblue 8%, lightblue 92%, transparent 92%);
-    width: 100%;
-    text-align: center;
-    height: 0;
-    will-change: transition;
-    transition: transform 80ms;
-    transform: translateX(0);
-  }
-
-  .pointer {
-    height: 20px;
-    position: absolute;
-    left: 0;
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: calc(50% - 3px);
-      right: 0;
-      width: 0;
-      height: 0;
-    }
-    will-change: transition;
-    transition: transform 80ms;
-    transform: translateX(0);
-
-    &.pointerA {
-      &:before {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 10px solid green;
-      }
-    }
-
-    &.pointerB {
-      &:before {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 10px solid red;
-      }
-    }
-  }
-}
