@@ -5,6 +5,8 @@ import {
   SwapValuesStep,
 } from "../../../shared.models";
 import { getTranslateX } from "./utils";
+import { chartMaxValue } from "../../../helprs/consts";
+import { store } from "../../../store/app-state";
 
 class ChartRenderer {
   private presenterNodes: HTMLElement[];
@@ -16,7 +18,8 @@ class ChartRenderer {
   constructor(
     private readonly initialState: number[],
     private readonly algName: string,
-    private readonly sortingSteps: SortingStep[]
+    private readonly sortingSteps: SortingStep[],
+    private readonly index: number
   ) {
     this.bootstrapChart(this.initialState, this.algName);
     this.updatesIterator = this.sortingSteps[Symbol.iterator]();
@@ -42,6 +45,13 @@ class ChartRenderer {
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
     const title = document.createElement("div");
+    title.addEventListener(
+      "click",
+      () => {
+        store.dispatch("removeAlgorithm", this.index);
+      },
+      { once: true }
+    );
     title.classList.add("chart-title");
     title.appendChild(document.createTextNode(algName));
     wrapper.appendChild(title);
@@ -65,7 +75,7 @@ class ChartRenderer {
     initialState.forEach((value) => {
       const col = document.createElement("div");
       col.classList.add("col");
-      col.style.height = `${value / 10}%`;
+      col.style.height = `${(value * 100) / chartMaxValue}%`;
       // col.innerText = value;
       presenterNodes.push(col);
       wrapper.appendChild(col);
@@ -124,7 +134,7 @@ class ChartRenderer {
 
   private updaterSetValue(sortingStep: SetValueStep): void {
     this.presenterNodes[sortingStep.index].style.height = `${
-      sortingStep.value / 10
+      (sortingStep.value * 100) / chartMaxValue
     }%`;
   }
 

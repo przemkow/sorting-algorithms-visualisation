@@ -30,11 +30,12 @@ function getVisualiser(
    * Create list of chartRenderer objects
    */
   const chartRenderers = spyRecords.map(
-    (spyRecord) =>
+    (spyRecord, index) =>
       new ChartRenderer(
         spyRecord.initialState,
         spyRecord.algorithmName,
-        spyRecord.steps
+        spyRecord.steps,
+        index
       )
   );
 

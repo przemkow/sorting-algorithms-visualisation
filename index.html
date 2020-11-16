@@ -32,7 +32,34 @@
           </label>
           <input type="range"  min="5" max="1500" step="5" value="1000" style="width: 100%" id="refresh-rate">
         </div>
-        
+
+        <div class="input-group">
+          <div class="input-title">🔢 Input array:</div>
+          <label for="array-length">
+            Number of elements:
+          </label>
+          <input type="number" style="width: 100%" id="array-length" value="10">
+          <div>
+            <input type="radio" id="array-random" name="array-values" value="array-random" checked>
+            <label for="array-random">Randomize</label>
+          </div>
+          <div>
+            <input type="radio" id="array-descent" name="array-values" value="array-descent">
+            <label for="array-descent">Sorter (descent)</label>
+          </div>
+          <div>
+            <input type="radio" id="array-ascend" name="array-values" value="array-ascend">
+            <label for="array-ascend">Sorter (ascend)</label>
+          </div>
+          <div>
+            <input type="radio" id="array-custom" name="array-values" value="array-custom">
+            <label for="array-custom">Custom values</label>
+          </div>
+          <div>
+            <button id="array-values-confirm" type="button">Apply</button>
+          </div>
+        </div>
+
         <hr>
 
         <div class="input-group">

@@ -6,6 +6,7 @@ const store = createStore<State>({
     return {
       refreshRate: 1000,
       sortingAlgorithms: [],
+      arrayToSort: Object.freeze([]),
     };
   },
   reducers: {
@@ -19,6 +20,20 @@ const store = createStore<State>({
       return {
         ...state,
         sortingAlgorithms: [...state.sortingAlgorithms, sortingAlgDetails],
+      };
+    },
+    removeAlgorithm(state, index) {
+      const sortingAlgorithms = [...state.sortingAlgorithms];
+      sortingAlgorithms.splice(index, 1);
+      return {
+        ...state,
+        sortingAlgorithms,
+      };
+    },
+    setArrayToSort(state, arrayToSort) {
+      return {
+        ...state,
+        arrayToSort: Object.freeze(arrayToSort),
       };
     },
   },

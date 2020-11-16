@@ -1,28 +1,37 @@
+import { bubbleSort } from "./sorting-algorithms/bubble_sort";
 import { store } from "./store/app-state";
 import { attachSettingsHandlers } from "./view/settings/index";
 import { getVisualiser } from "./view/visualiser/index";
+import { generateInputArray } from "./helprs/helpers";
 
-function getInputArray() {
-  const array = Array.from({ length: 30 }, () =>
-    Math.floor(Math.random() * 1000)
-  );
-  return Object.freeze(array);
+function dispatchInitialValues() {
+  store.dispatch("setRefreshRate", 1000);
+  store.dispatch("addAlgorithm", {
+    name: "Bubble Sort",
+    sortingFn: bubbleSort,
+  });
+  store.dispatch("setArrayToSort", generateInputArray(10, "random"));
 }
 
 (function main() {
-  //Get array to sort
-  const inputArray = getInputArray();
-  attachSettingsHandlers();
-
   let visualiserCtrl;
   let isVisualisationRunning = false;
+  function resetVisualiser(state) {
+    visualiserCtrl = getVisualiser(state.arrayToSort, state.sortingAlgorithms);
+    isVisualisationRunning = false;
+  }
 
   store.subscribe({
     sortingAlgorithms(newState) {
-      visualiserCtrl = getVisualiser(inputArray, newState.sortingAlgorithms);
-      isVisualisationRunning = false;
+      resetVisualiser(newState);
+    },
+    arrayToSort(newState) {
+      resetVisualiser(newState);
     },
   });
+
+  attachSettingsHandlers();
+  dispatchInitialValues();
 
   document.getElementById("start").addEventListener("click", (e) => {
     if (!isVisualisationRunning) {
