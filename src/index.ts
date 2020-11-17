@@ -1,5 +1,6 @@
 import { bubbleSort } from "./sorting-algorithms/bubble_sort";
 import { store } from "./store/app-state";
+import { QuickSort } from "./sorting-algorithms/quick_sort";
 import { attachSettingsHandlers } from "./view/settings/index";
 import { getVisualiser } from "./view/visualiser/index";
 import { generateInputArray } from "./helprs/helpers";
@@ -10,7 +11,11 @@ function dispatchInitialValues() {
     name: "Bubble Sort",
     sortingFn: bubbleSort,
   });
-  store.dispatch("setArrayToSort", generateInputArray(10, "random"));
+  store.dispatch("addAlgorithm", {
+    name: "Quick Sort",
+    sortingFn: QuickSort.sort,
+  });
+  store.dispatch("setArrayToSort", generateInputArray(50, "random"));
 }
 
 (function main() {

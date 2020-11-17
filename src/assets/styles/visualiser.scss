@@ -1,64 +1,84 @@
-.wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+@import "./colors";
+
+.chart-wrapper {
   height: 100%;
-  margin-bottom: 20px;
+  margin: 6px;
+  border-radius: 21px;
+  padding: 12px;
+  padding-bottom: 18px;
+  background-color: $white;
   position: relative;
 
   .chart-title {
+    cursor: pointer;
     position: absolute;
-    top: 0;
-    left: 0;
+    font-size: 12px;
+    font-weight: 500;
+    border-bottom: 1px solid $grey-dark;
+    padding: 9px;
+    top: 5px;
+    left: 10px;
     z-index: 1;
+    background-color: rgba($white, 0.7);
+
+    &:after {
+      margin-left: 6px;
+      content: '(remove)';
+    }
   }
 
   &.done {
-    .col {
+    .chart .col {
       background: linear-gradient(90deg, transparent 8%, lightgreen 8%, lightgreen 92%, transparent 92%);
     }
   }
 
-  .col {
-    background: linear-gradient(90deg, transparent 8%, lightblue 8%, lightblue 92%, transparent 92%);
-    width: 100%;
-    text-align: center;
-    height: 0;
-    will-change: transform;
-    transition: transform var(--transition-time), height var(--transition-time);
-    transform: translateX(0);
-  }
+  .chart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+    position: relative;
 
-  .pointer {
-    height: 20px;
-    position: absolute;
-    left: 0;
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: calc(50% - 3px);
-      right: 0;
-      width: 0;
+    .col {
+      background: linear-gradient(90deg, transparent 8%, lightblue 8%, lightblue 92%, transparent 92%);
+      width: 100%;
+      text-align: center;
       height: 0;
+      will-change: transform;
+      transition: transform var(--transition-time), height var(--transition-time);
+      transform: translateX(0);
     }
-    will-change: transform;
-    transition: transform var(--transition-time-b);
-    transform: translateX(0);
 
-    &.pointerA {
+    .pointer {
+      position: absolute;
+      left: 0;
       &:before {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: calc(50% - 3px);
+        right: 0;
+        width: 0;
+        height: 0;
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-bottom: 10px solid green;
+        border-bottom: 8px solid green;
       }
-    }
+      will-change: transform;
+      transition: transform var(--transition-time-b);
+      transform: translateX(0);
 
-    &.pointerB {
-      &:before {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 10px solid red;
+      &.pointerA {
+        &:before {
+          border-bottom-color: green;
+        }
+      }
+
+      &.pointerB {
+        &:before {
+          border-bottom-color: red;
+        }
       }
     }
   }

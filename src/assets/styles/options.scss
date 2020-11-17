@@ -1,20 +1,100 @@
+@import "./colors";
 
-.options {
+.settings {
   grid-area: menu;
-  background-color: #f9f9f9;
-  padding: 8px;
+  background-color: $white;
+  margin: 6px;
+  border-radius: 21px;
+  overflow: auto;
+  padding-bottom: 12px;
   .title {
-    font-weight: 400;
-    font-size: 18px;
-    margin-bottom: 24px;
+    border-bottom: 1px solid $grey-dark;
+    text-align: center;
+    padding-top: 24px;
+    padding-bottom: 18px;
+    font-size: 17px;
+    font-weight: bold;
   }
 
   .input-group {
-    margin-bottom: 12px;
-    .input-option {
-      label {
-        font-size: 14px
-      }
+    .input-label {
+      font-size: 12px;
     }
+    .input {
+      border: solid 1px $grey-dark;
+    }
+  }
+  .input-group--radio {
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    .input {
+      margin: 0;
+      margin-right: 6px;
+    }
+  }
+
+  .setting-section {
+    margin: 16px 16px 24px 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $grey-dark;
+
+    .section-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  }
+
+  .algorithm-btn {
+    font-size: 14px;
+    font-weight: 300;
+    border: none;
+    background: none;
+    margin: 0;
+    display: block;
+    padding: 6px 0;
+    cursor: pointer;
+    color: $black;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .label-small {
+    font-size: 10px;
+    font-weight: 300;
+  }
+
+  .number-of-elements {
+    margin-bottom: 6px;
+  }
+
+  .set-array-btn {
+    border-radius: 5px;
+    border: solid 1px $grey-dark;
+    background-color: $white;
+    font-size: 12px;
+    font-weight: 300;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: $black;
+    cursor: pointer;
+  }
+  .control {
+    text-align: center;
+  }
+  .start-btn {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: $grey-dark;
+    border: none;
+    padding: 12px 24px;
+    display: inline-block;
+    margin: auto;
+    color: $black;
   }
 }

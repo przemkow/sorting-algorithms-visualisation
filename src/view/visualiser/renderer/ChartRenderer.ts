@@ -13,7 +13,7 @@ class ChartRenderer {
   private updatesIterator: IterableIterator<SortingStep>;
   private pointerA: HTMLElement;
   private pointerB: HTMLElement;
-  private wrapper: HTMLElement;
+  private chartWrapper: HTMLElement;
 
   constructor(
     private readonly initialState: number[],
@@ -30,7 +30,7 @@ class ChartRenderer {
     if (!nextStep.done) {
       this.updateChart(nextStep.value);
     } else {
-      this.wrapper.classList.add("done");
+      this.chartWrapper.classList.add("done");
     }
     return {
       done: nextStep.done,
@@ -42,8 +42,12 @@ class ChartRenderer {
   }
 
   private bootstrapChart(initialState: number[], algName: string): void {
-    const wrapper = document.createElement("div");
-    wrapper.classList.add("wrapper");
+    const chartWrapper = document.createElement("div");
+    chartWrapper.classList.add("chart-wrapper");
+    const chart = document.createElement("div");
+    chart.classList.add("chart");
+    chartWrapper.appendChild(chart);
+
     const title = document.createElement("div");
     title.addEventListener(
       "click",
@@ -54,22 +58,22 @@ class ChartRenderer {
     );
     title.classList.add("chart-title");
     title.appendChild(document.createTextNode(algName));
-    wrapper.appendChild(title);
-    this.wrapper = wrapper;
+    chartWrapper.appendChild(title);
+    this.chartWrapper = chartWrapper;
 
     const pointerA = document.createElement("div");
     pointerA.classList.add("pointer");
     pointerA.classList.add("pointerA");
     pointerA.style.width = `calc(100% / ${initialState.length})`;
     pointerA.style.visibility = "hidden";
-    wrapper.appendChild(pointerA);
+    chart.appendChild(pointerA);
 
     const pointerB = document.createElement("div");
     pointerB.classList.add("pointer");
     pointerB.classList.add("pointerB");
     pointerB.style.width = `calc(100% / ${initialState.length})`;
     pointerB.style.visibility = "hidden";
-    wrapper.appendChild(pointerB);
+    chart.appendChild(pointerB);
 
     const presenterNodes = [];
     initialState.forEach((value) => {
@@ -78,10 +82,10 @@ class ChartRenderer {
       col.style.height = `${(value * 100) / chartMaxValue}%`;
       // col.innerText = value;
       presenterNodes.push(col);
-      wrapper.appendChild(col);
+      chart.appendChild(col);
     });
 
-    document.getElementById("visualiser").appendChild(wrapper);
+    document.getElementById("visualiser").appendChild(chartWrapper);
 
     this.pointerA = pointerA;
     this.pointerB = pointerB;

@@ -1,11 +1,17 @@
 @import "./visualiser";
 @import "./options";
-
+@import "./colors";
 body {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
   line-height: 1.5;
-  color: #4a4a4a;
+  color: $black;
+  background-color: $grey-light;
+
+  * {
+    font-family: 'Open Sans', sans-serif;
+  }
+
 }
 
 #app {
@@ -13,8 +19,9 @@ body {
   grid-template-columns: 200px 1fr;
   grid-template-areas:
     'menu visualiser';
-  grid-gap: 8px;
   height: 100%;
+  box-sizing: border-box;
+  padding: 12px 6px;
 }
 
 #visualiser {
