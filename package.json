@@ -10,7 +10,7 @@
     "build": "parcel build index.html --out-dir ./dist",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix"
   },
-  "author": "",
+  "author": "Przemyslaw Falowski (przemkow)",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

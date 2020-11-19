@@ -43,7 +43,6 @@ function getVisualiser(
   /**
    * visualiseChanges - function which iterates over all chartRenderers and updates rendered chart in period defined as
    * an argument.
-   * @param updateInterval
    */
   function visualiseChanges() {
     let allDone = true;
