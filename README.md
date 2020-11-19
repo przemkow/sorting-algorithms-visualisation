@@ -1,4 +1,4 @@
-#🕵️ Sorting algorithms visualiser 
+# 🕵️ Sorting algorithms visualiser 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d7d3c8b7-d2d6-407b-95fc-19a2a69e5dd8/deploy-status)](https://app.netlify.com/sites/przemkow-sorting-algorithms-visualisation/deploys)
 ## URL:
