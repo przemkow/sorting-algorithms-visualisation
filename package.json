@@ -12,7 +12,7 @@
     "release": "standard-version"
   },
   "author": "Przemyslaw Falowski (przemkow)",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/przemkow/sorting-algorithms-visualisation.git"
