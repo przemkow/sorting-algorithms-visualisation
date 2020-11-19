@@ -8,10 +8,15 @@
     "dev": "parcel index.html",
     "watch": "parcel watch index.html",
     "build": "parcel build index.html --out-dir ./dist",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix"
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --fix",
+    "release": "standard-version"
   },
   "author": "Przemyslaw Falowski (przemkow)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/przemkow/sorting-algorithms-visualisation.git"
+  },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -25,6 +30,7 @@
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.1.2",
     "sass": "^1.27.0",
+    "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
   },
   "husky": {
