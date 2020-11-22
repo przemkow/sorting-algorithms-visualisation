@@ -1,8 +1,8 @@
 import { store } from "../../store/app-state";
-import { bubbleSort } from "../../sorting-algorithms/bubble_sort";
-import { HeapSort } from "../../sorting-algorithms/heap_sort";
-import { MergeSort } from "../../sorting-algorithms/merge_sort";
-import { QuickSort } from "../../sorting-algorithms/quick_sort";
+import { BubbleSort } from "../../sorting-algorithms/BubbleSort";
+import { HeapSort } from "../../sorting-algorithms/HeapSort";
+import { MergeSort } from "../../sorting-algorithms/MergeSort";
+import { QuickSort } from "../../sorting-algorithms/QuickSort";
 import { generateInputArray, getCustomArray } from "../../helprs/helpers";
 
 function updateRefreshRate(refreshRate: number) {
@@ -44,7 +44,7 @@ function attachSettingsHandlers() {
       const options = {
         "bubble-sort": {
           name: "Bubble Sort",
-          sortingFn: bubbleSort,
+          sortingFn: BubbleSort.sort,
         },
         "heap-sort": {
           name: "HeapSort",

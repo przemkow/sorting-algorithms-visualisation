@@ -1,6 +1,6 @@
-import { bubbleSort } from "./sorting-algorithms/bubble_sort";
+import { BubbleSort } from "./sorting-algorithms/BubbleSort";
 import { store } from "./store/app-state";
-import { QuickSort } from "./sorting-algorithms/quick_sort";
+import { QuickSort } from "./sorting-algorithms/QuickSort";
 import { attachSettingsHandlers } from "./view/settings/index";
 import { getVisualiser } from "./view/visualiser/index";
 import { generateInputArray } from "./helprs/helpers";
@@ -9,7 +9,7 @@ function dispatchInitialValues() {
   store.dispatch("setRefreshRate", 1000);
   store.dispatch("addAlgorithm", {
     name: "Bubble Sort",
-    sortingFn: bubbleSort,
+    sortingFn: BubbleSort.sort,
   });
   store.dispatch("addAlgorithm", {
     name: "Quick Sort",

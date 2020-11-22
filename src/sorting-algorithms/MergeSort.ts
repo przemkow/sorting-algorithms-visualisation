@@ -1,5 +1,13 @@
 import { SpyOptions } from "../sorting-spies/spy.models";
 
+/**
+ * 1. Dzielimy nasz zbór na dwa podzbiory, Lewy, i Prawy
+ * 2. Dla kadego podzbioru wywołujemy metodę Sort.
+ * 3. Po posortowaniu obu kolekcji wywołujemy metodę Merge któa łączy ze sobąoba podzbiory w odpowiedniej kolejności (łączy 2 posortowane tablice).
+ * 4. Pojedyńczy element uznajemy za posortowany
+ * Size: O(n)
+ * Time: O(nlogn)
+ */
 class MergeSort {
   public static sort(A: number[], spyOptions: SpyOptions) {
     MergeSort.sortFn(A, 0, A.length - 1, spyOptions);

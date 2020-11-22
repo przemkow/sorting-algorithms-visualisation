@@ -1,11 +1,18 @@
 import { SpyOptions } from "../sorting-spies/spy.models";
 
+/**
+ *   Wybieramy ostatni element jako pivot. Elementy mniejsze od pivota ustawiamy na lewo, większe na prawo.
+ *   Wywołujemy rekurencyjnie funkcje sort dla obu połówek.
+ *
+ *   Time: O(logn) W najgorszym: O(n^2)
+ *   Mem: O(logn) - wykorzystanie rekurencji
+ */
 class QuickSort {
   public static sort(A: number[], spyOptions: SpyOptions) {
     QuickSort.sortFn(A, 0, A.length - 1, spyOptions);
   }
 
-  public static sortFn(
+  private static sortFn(
     A: number[],
     low: number,
     high: number,
