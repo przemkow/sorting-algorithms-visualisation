@@ -5,6 +5,7 @@ import { MergeSort } from "../../sorting-algorithms/MergeSort";
 import { QuickSort } from "../../sorting-algorithms/QuickSort";
 import { generateInputArray, getCustomArray } from "../../helprs/helpers";
 import { InsertionSort } from "../../sorting-algorithms/InsertionSort";
+import { SelectSort } from "../../sorting-algorithms/SelectSort";
 
 function updateRefreshRate(refreshRate: number) {
   document.getElementById("refresh-rate-label")!.innerText = refreshRate + "ms";
@@ -50,6 +51,10 @@ function attachSettingsHandlers() {
         "heap-sort": {
           name: "HeapSort",
           sortingFn: HeapSort.sort,
+        },
+        "select-sort": {
+          name: "SelectSort Sort",
+          sortingFn: SelectSort.sort,
         },
         "merge-sort": {
           name: "MergeSort",
