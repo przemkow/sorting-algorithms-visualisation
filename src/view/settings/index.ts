@@ -6,6 +6,7 @@ import { QuickSort } from "../../sorting-algorithms/QuickSort";
 import { generateInputArray, getCustomArray } from "../../helprs/helpers";
 import { InsertionSort } from "../../sorting-algorithms/InsertionSort";
 import { SelectSort } from "../../sorting-algorithms/SelectSort";
+import { ShellSort } from "../../sorting-algorithms/ShellSort";
 
 function updateRefreshRate(refreshRate: number) {
   document.getElementById("refresh-rate-label")!.innerText = refreshRate + "ms";
@@ -67,6 +68,10 @@ function attachSettingsHandlers() {
         "insertion-sort": {
           name: "InsertionSort",
           sortingFn: InsertionSort.sort,
+        },
+        "shell-sort": {
+          name: "ShellSort",
+          sortingFn: ShellSort.sort,
         },
       };
       const config = options[e.target.getAttribute("data-value")];
