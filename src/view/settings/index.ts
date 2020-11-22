@@ -4,6 +4,7 @@ import { HeapSort } from "../../sorting-algorithms/HeapSort";
 import { MergeSort } from "../../sorting-algorithms/MergeSort";
 import { QuickSort } from "../../sorting-algorithms/QuickSort";
 import { generateInputArray, getCustomArray } from "../../helprs/helpers";
+import { InsertionSort } from "../../sorting-algorithms/InsertionSort";
 
 function updateRefreshRate(refreshRate: number) {
   document.getElementById("refresh-rate-label")!.innerText = refreshRate + "ms";
@@ -57,6 +58,10 @@ function attachSettingsHandlers() {
         "quick-sort": {
           name: "QuickSort",
           sortingFn: QuickSort.sort,
+        },
+        "insertion-sort": {
+          name: "InsertionSort",
+          sortingFn: InsertionSort.sort,
         },
       };
       const config = options[e.target.getAttribute("data-value")];

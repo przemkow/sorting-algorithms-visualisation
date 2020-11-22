@@ -1,5 +1,7 @@
 import { ChartRenderer } from "./renderer/ChartRenderer";
 import { manualSpy } from "../../sorting-spies/Manual/manual-spy";
+import { proxySpy } from "../../sorting-spies/Proxy/proxy-spy";
+
 import { store } from "../../store/app-state";
 import { SortingAlgorithmDetails } from "../../shared.models";
 
